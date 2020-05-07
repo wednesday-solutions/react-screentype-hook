@@ -12,6 +12,21 @@ npm install react-screentype-hook
 yarn add react-screentype-hook
 ```
 
+## Sample Response
+
+```javascript
+const screenType = useScreenType();
+console.log(screenType);
+```
+
+```
+  {
+    isDesktop: false,
+    isMobile: true,
+    isTablet: false,
+  }
+```
+
 ## How to use
 
 ## Without custom breakpoints
