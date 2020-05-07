@@ -1,0 +1,74 @@
+{
+  "name": "sdk-template",
+  "version": "0.0.0",
+  "description": "sdk-template",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wednesday-solutions/sdk-template.git"
+  },
+  "engines": {
+    "npm": ">=5",
+    "node": ">=8.15.1"
+  },
+  "author": "Mac",
+  "homepage": "https://github.com/wednesday-solutions/sdk-template",
+  "license": "MIT",
+  "scripts": {
+    "lint": "npm run lint:js",
+    "lint:eslint": "eslint --ignore-path .eslintignore",
+    "lint:eslint:fix": "eslint --ignore-path .eslintignore --fix",
+    "lint:js": "npm run lint:eslint -- . ",
+    "lint:staged": "lint-staged",
+    "test:clean": "rimraf ./coverage",
+    "test": "cross-env NODE_ENV=test jest --coverage",
+    "test:staged": "jest --findRelatedTests",
+    "test:watch": "cross-env NODE_ENV=test jest --watchAll",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "prettify": "prettier --write",
+    "webpack": "cross-env NODE_ENV=development --env.ENVIRONMENT=development webpack -p --mode=development",
+    "webpack:prod": "cross-env NODE_ENV=production --env.ENVIRONMENT=production webpack -p --mode=production"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "IE 10"
+  ],
+  "lint-staged": {
+    "*.js": [
+      "npm run lint:eslint:fix",
+      "git add --force",
+      "jest --findRelatedTests $STAGED_FILES"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add --force"
+    ]
+  },
+  "pre-commit": "lint:staged",
+  "resolutions": {
+    "babel-core": "7.0.0-bridge.0"
+  },
+  "dependencies": {
+    "apisauce": "^1.1.0",
+    "cross-env": "5.2.0",
+    "deepmerge": "^4.2.2",
+    "dotenv": "^8.2.0",
+    "immer": "3.0.0",
+    "immutable": "^4.0.0-rc.12",
+    "lodash": "4.17.11",
+    "map-keys-deep": "^0.0.2",
+    "ua-parser-js": "^0.7.21"
+  },
+  "devDependencies": {
+    "@babel/core": "7.4.3",
+    "babel-loader": "8.0.5",
+    "coveralls": "3.0.3",
+    "eslint": "5.16.0",
+    "jest-cli": "24.7.1",
+    "lint-staged": "8.1.5",
+    "prettier": "1.17.0",
+    "rimraf": "2.6.3",
+    "webpack": "4.30.0",
+    "webpack-cli": "^3.3.10"
+  }
+}
