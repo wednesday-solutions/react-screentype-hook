@@ -1,18 +1,19 @@
 {
-  "name": "sdk-template",
-  "version": "0.0.0",
-  "description": "sdk-template",
+  "name": "react-screentype-hook",
+  "version": "1.0.0",
+  "description": "react-screentype-hook",
   "repository": {
     "type": "git",
-    "url": "git://github.com/wednesday-solutions/sdk-template.git"
+    "url": "git://github.com/wednesday-solutions/react-screentype-hook.git"
   },
   "engines": {
     "npm": ">=5",
     "node": ">=8.15.1"
   },
   "author": "Mac",
-  "homepage": "https://github.com/wednesday-solutions/sdk-template",
+  "homepage": "https://github.com/wednesday-solutions/react-screentype-hook",
   "license": "MIT",
+  "main": "lib/react-screentype-hook",
   "scripts": {
     "lint": "npm run lint:js",
     "lint:eslint": "eslint --ignore-path .eslintignore",
@@ -25,8 +26,8 @@
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "prettify": "prettier --write",
-    "webpack": "cross-env NODE_ENV=development --env.ENVIRONMENT=development webpack -p --mode=development",
-    "webpack:prod": "cross-env NODE_ENV=production --env.ENVIRONMENT=production webpack -p --mode=production"
+    "webpack:prod": "webpack -p --mode=production",
+    "prepublishOnly": "yarn webpack:prod"
   },
   "browserslist": [
     "last 2 versions",
@@ -52,12 +53,17 @@
     "apisauce": "^1.1.0",
     "cross-env": "5.2.0",
     "deepmerge": "^4.2.2",
-    "dotenv": "^8.2.0",
     "immer": "3.0.0",
     "immutable": "^4.0.0-rc.12",
     "lodash": "4.17.11",
     "map-keys-deep": "^0.0.2",
+    "prop-types": "^15.7.2",
+    "terser-webpack-plugin": "^3.0.1",
     "ua-parser-js": "^0.7.21"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "@babel/core": "7.4.3",

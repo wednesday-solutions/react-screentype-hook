@@ -1,20 +1,13 @@
 const path = require("path");
-const dotenv = require("dotenv");
 const webpack = require("webpack");
-
-const env = dotenv.config().parsed;
-
-const envKeys = Object.keys(env).reduce((prev, next) => {
-  prev[`process.env.${next}`] = JSON.stringify(env[next]);
-  return prev;
-}, {});
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "sdk-template.js",
-    library: "sdk-template-data",
+    path: path.resolve(__dirname, "lib"),
+    filename: "react-screentype-hook.js",
+    library: "react-screentype-hook",
     libraryTarget: "umd"
   },
   externals: {
@@ -23,23 +16,33 @@ module.exports = {
       commonjs2: "lodash",
       amd: "lodash",
       root: "_"
+    },
+    react: {
+      commonjs: "react",
+      commonjs2: "react",
+      amd: "react",
+      root: "react"
     }
+  },
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true,
+        terserOptions: {
+          // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
+        }
+      })
+    ]
   },
   plugins: [
     new webpack.EnvironmentPlugin({
       NODE_ENV: "development"
-    }),
-    new webpack.DefinePlugin(envKeys)
+    })
   ],
   resolve: {
     modules: ["node_modules", "app"],
-    alias: {
-      src: path.resolve(__dirname, "./src"),
-      services: path.resolve(__dirname, "./src/services"),
-      selectors: path.resolve(__dirname, "./src/selectors"),
-      reducers: path.resolve(__dirname, "./src/reducers"),
-      utils: path.resolve(__dirname, "./src/utils")
-    },
     extensions: [".js", ".jsx", ".react.js"],
     mainFields: ["browser", "jsnext:main", "main"]
   }
