@@ -13,6 +13,12 @@
   "author": "Mac",
   "homepage": "https://github.com/wednesday-solutions/react-screentype-hook",
   "license": "MIT",
+  "keywords": [
+    "react",
+    "react-hooks",
+    "screen-types",
+    "screen-dimensions"
+  ],
   "main": "lib/react-screentype-hook",
   "scripts": {
     "lint": "npm run lint:js",
