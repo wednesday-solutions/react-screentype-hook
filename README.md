@@ -29,7 +29,7 @@ console.log(screenType);
 
 ## How to use
 
-## Without custom breakpoints
+### Without custom breakpoints
 
 ```javascript
 import React from "react";
@@ -54,7 +54,7 @@ function App() {
 export default App;
 ```
 
-## With custom breakpoints
+### With custom breakpoints
 
 ```javascript
 import React from "react";
