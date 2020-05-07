@@ -3,7 +3,9 @@ import { PropTypes } from "prop-types";
 import { getCurrentScreenType, DEFAULT_BREAKPOINTS } from "./constants";
 
 function useScreenType(breakpoints = DEFAULT_BREAKPOINTS) {
-  const [screenType, setScreenType] = useState({});
+  const [screenType, setScreenType] = useState(
+    getCurrentScreenType(breakpoints)
+  );
   const handleResize = () => {
     const currentScreenType = getCurrentScreenType(breakpoints);
     const updated = Object.keys(currentScreenType).find(
@@ -19,7 +21,7 @@ function useScreenType(breakpoints = DEFAULT_BREAKPOINTS) {
     return () => {
       window.removeEventListener("resize", handleResize, false);
     };
-  }, []);
+  }, [screenType]);
   return screenType;
 }
 
