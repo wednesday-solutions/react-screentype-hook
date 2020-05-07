@@ -14,7 +14,7 @@ yarn add react-screentype-hook
 
 ## How to use
 
-# Without custom breakpoints
+## Without custom breakpoints
 
 ```javascript
 import React from "react";
