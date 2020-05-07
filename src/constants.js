@@ -5,9 +5,7 @@ export const DEFAULT_BREAKPOINTS = {
 };
 
 export const getCurrentScreenType = breakpoints => ({
-  isMobile:
-    window.innerWidth >= breakpoints.mobile &&
-    window.innerWidth < breakpoints.tablet,
+  isMobile: window.innerWidth < breakpoints.tablet,
   isTablet:
     window.innerWidth >= breakpoints.tablet &&
     window.innerWidth < breakpoints.desktop,
