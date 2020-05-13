@@ -51,11 +51,4 @@ function useScreenType(breakpoints = DEFAULT_BREAKPOINTS) {
   return screenType;
 }
 
-useScreenType.propTypes = {
-  breakpoints: PropTypes.shape({
-    isMobile: PropTypes.bool,
-    isTablet: PropTypes.bool,
-    isDesktop: PropTypes.bool
-  })
-};
 export default useScreenType;
