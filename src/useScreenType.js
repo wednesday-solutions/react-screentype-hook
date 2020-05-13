@@ -47,7 +47,7 @@ function useScreenType(breakpoints = DEFAULT_BREAKPOINTS) {
         handleResize(BREAKPOINT_TYPES.largeDesktop)
       );
     };
-  }, [breakpoints]);
+  }, []);
   return screenType;
 }
 
