@@ -1,27 +1,53 @@
 import { useState, useEffect } from "react";
 import { PropTypes } from "prop-types";
-import { getCurrentScreenType, DEFAULT_BREAKPOINTS } from "./constants";
+import {
+  getCurrentScreenType,
+  calculateCurrentScreenType,
+  BREAKPOINT_TYPES,
+  DEFAULT_BREAKPOINTS
+} from "./constants";
 
 function useScreenType(breakpoints = DEFAULT_BREAKPOINTS) {
   const [screenType, setScreenType] = useState(
     getCurrentScreenType(breakpoints)
   );
-  const handleResize = () => {
-    const currentScreenType = getCurrentScreenType(breakpoints);
-    const updated = Object.keys(currentScreenType).find(
-      key => currentScreenType[key] !== screenType[key]
-    );
-    if (updated) {
-      setScreenType(currentScreenType);
-    }
-  };
+  const handleResize = type => event =>
+    event.matches && setScreenType(getCurrentScreenType(type));
+
   useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
+    setScreenType(calculateCurrentScreenType(breakpoints));
+
+    const largeDesktopQueryList = matchMedia(
+      `(min-width: ${breakpoints.largeDesktop}px)`
+    );
+    const desktopQueryList = matchMedia(
+      `(min-width: ${
+        breakpoints.desktop
+      }px) and (max-width: ${breakpoints.largeDesktop - 1}px)`
+    );
+    const tabletQueryList = matchMedia(
+      `(min-width: ${
+        breakpoints.tablet
+      }px) and (max-width: ${breakpoints.desktop - 1}px)`
+    );
+    const mobileQueryList = matchMedia(`(max-width: ${breakpoints.tablet}px)`);
+
+    mobileQueryList.addListener(handleResize(BREAKPOINT_TYPES.mobile));
+    tabletQueryList.addListener(handleResize(BREAKPOINT_TYPES.tablet));
+    desktopQueryList.addListener(handleResize(BREAKPOINT_TYPES.desktop));
+    largeDesktopQueryList.addListener(
+      handleResize(BREAKPOINT_TYPES.largeDesktop)
+    );
+
     return () => {
-      window.removeEventListener("resize", handleResize, false);
+      mobileQueryList.removeListener(handleResize(BREAKPOINT_TYPES.mobile));
+      tabletQueryList.removeListener(handleResize(BREAKPOINT_TYPES.tablet));
+      desktopQueryList.removeListener(handleResize(BREAKPOINT_TYPES.desktop));
+      largeDesktopQueryList.removeListener(
+        handleResize(BREAKPOINT_TYPES.largeDesktop)
+      );
     };
-  }, [screenType]);
+  }, [breakpoints]);
   return screenType;
 }
 
