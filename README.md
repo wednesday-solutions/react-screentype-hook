@@ -1,6 +1,6 @@
 # react-screentype-hook
 
-> React hook to dynamically get current screen type
+> React hook to dynamically get current screen type (mobile, tablet, desktop, largeDesktop)
 
 ## Install
 
@@ -21,9 +21,10 @@ console.log(screenType);
 
 ```
   {
+    isLargeDesktop: false,
     isDesktop: false,
     isMobile: true,
-    isTablet: false,
+    isTablet: false
   }
 ```
 
@@ -64,7 +65,8 @@ function App() {
   const screenType = useScreenType({
     mobile: 400,
     tablet: 800,
-    desktop: 1000
+    desktop: 1000,
+    largeDesktop: 1600
   });
 
   return (
