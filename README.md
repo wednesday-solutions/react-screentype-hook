@@ -2,6 +2,9 @@
 
 > React hook to dynamically get current screen type (mobile, tablet, desktop, largeDesktop)
 
+<img src="./react-screentype-hook.svg" height="250px" />
+
+
 ## Install
 
 ```sh
