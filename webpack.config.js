@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
-
 module.exports = {
 	entry: './src/index.js',
 	output: {
@@ -22,12 +21,6 @@ module.exports = {
 		]
 	},
 	externals: {
-		lodash: {
-			commonjs: 'lodash',
-			commonjs2: 'lodash',
-			amd: 'lodash',
-			root: '_'
-		},
 		react: {
 			commonjs: 'react',
 			commonjs2: 'react',
@@ -36,6 +29,8 @@ module.exports = {
 		}
 	},
 	optimization: {
+		usedExports: true,
+		   providedExports: true,
 		minimizer: [
 			new TerserPlugin({
 				cache: true,
