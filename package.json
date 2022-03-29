@@ -52,8 +52,8 @@
   "pre-commit": "lint:staged",
   "dependencies": {},
   "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react": "^16.8.6 || ^17",
+    "react-dom": "^16.8.6 || ^17"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
