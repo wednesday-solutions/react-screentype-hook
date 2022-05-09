@@ -12,7 +12,7 @@ function useScreenType(breakpoints = DEFAULT_BREAKPOINTS) {
   );
   const handleResize = (type) => (event) =>
     event.matches && setScreenType(getCurrentScreenType(type));
-  console.log({ screenType });
+
   useEffect(() => {
     setScreenType(calculateCurrentScreenType(breakpoints));
 
