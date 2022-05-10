@@ -21,6 +21,7 @@
     "screen-dimensions"
   ],
   "main": "lib/react-screentype-hook",
+  "types": "index.d.ts",
   "scripts": {
     "lint": "npm run lint:js",
     "lint:eslint": "eslint --ignore-path .eslintignore",
@@ -52,8 +53,8 @@
   "pre-commit": "lint:staged",
   "dependencies": {},
   "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react": ">=16.8.6 || <18.1.0",
+    "react-dom": ">=16.8.6 || <18.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
@@ -65,7 +66,9 @@
     "eslint": "5.16.0",
     "jest-cli": "24.7.1",
     "lint-staged": "8.1.5",
-    "prettier": "1.17.0",
+    "prettier": "2.6.2",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
     "rimraf": "2.6.3",
     "terser-webpack-plugin": "^3.0.1",
     "webpack": "4.30.0",

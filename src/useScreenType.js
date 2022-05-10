@@ -3,14 +3,14 @@ import {
   getCurrentScreenType,
   calculateCurrentScreenType,
   BREAKPOINT_TYPES,
-  DEFAULT_BREAKPOINTS
+  DEFAULT_BREAKPOINTS,
 } from "./constants";
 
 function useScreenType(breakpoints = DEFAULT_BREAKPOINTS) {
   const [screenType, setScreenType] = useState(
-    getCurrentScreenType(breakpoints)
+    calculateCurrentScreenType(breakpoints)
   );
-  const handleResize = type => event =>
+  const handleResize = (type) => (event) =>
     event.matches && setScreenType(getCurrentScreenType(type));
 
   useEffect(() => {
@@ -20,14 +20,14 @@ function useScreenType(breakpoints = DEFAULT_BREAKPOINTS) {
       `(min-width: ${breakpoints.largeDesktop}px)`
     );
     const desktopQueryList = matchMedia(
-      `(min-width: ${
-        breakpoints.desktop
-      }px) and (max-width: ${breakpoints.largeDesktop - 1}px)`
+      `(min-width: ${breakpoints.desktop}px) and (max-width: ${
+        breakpoints.largeDesktop - 1
+      }px)`
     );
     const tabletQueryList = matchMedia(
-      `(min-width: ${
-        breakpoints.tablet
-      }px) and (max-width: ${breakpoints.desktop - 1}px)`
+      `(min-width: ${breakpoints.tablet}px) and (max-width: ${
+        breakpoints.desktop - 1
+      }px)`
     );
     const mobileQueryList = matchMedia(`(max-width: ${breakpoints.tablet}px)`);
 
